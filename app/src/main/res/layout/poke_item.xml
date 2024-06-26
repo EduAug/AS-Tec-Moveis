@@ -24,13 +24,14 @@
             <ImageView
                 android:id="@+id/imgPoke"
                 android:layout_width="140dp"
-                android:layout_height="160dp"
+                android:layout_height="140dp"
                 android:scaleType="centerCrop"
+                android:background="#a1ddf0"
                 app:loadImage="@{chara.image}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="10dp"
+                android:layout_margin="20dp"
                 tools:src="@mipmap/ic_launcher" />
 
 
@@ -44,7 +45,8 @@
                 android:layout_marginStart="10dp"
                 android:textSize="20sp"
                 android:textColor="#000000"
-                android:text="@{String.valueOf(chara.pokeid)}"
+                android:text="@{`#`+String.valueOf(chara.pokeid)}"
+                android:textStyle="bold"
                 />
 
             <TextView
@@ -53,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:layout_marginTop="50dp"
-                android:textColor="#CBB05E"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toEndOf="@id/tvPokeID"
                 app:layout_constraintEnd_toEndOf="parent"

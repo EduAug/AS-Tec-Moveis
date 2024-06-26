@@ -2,6 +2,7 @@ package com.example.as_tec_moveis.data.repositories
 
 import android.util.Log
 import com.example.as_tec_moveis.commons.Results
+import com.example.as_tec_moveis.commons.StringUtils.capitalizeFirst
 import com.example.as_tec_moveis.data.Pokemon
 import com.example.as_tec_moveis.data.network.PokeAPI
 import javax.inject.Inject
@@ -13,16 +14,24 @@ class PokeRepository @Inject constructor(
         return try {
             val pokeResponse = pokeAPI.fetchPokemonList(offset, limit)
             val pokemonList = pokeResponse.pokeResult.map { pokemonResult ->
-                val segments = pokemonResult.url.split("/")
-                val pokeId = segments[segments.size - 2].toInt()
-                val pokemonDetail = pokeAPI.fetchPokemonDetail(pokeId)
-                Log.d("PokemonRepository", "Fetched details for Pokémon ID: $pokeId - ${pokemonDetail.name}")
-
+                val pokeid = pokemonResult.url.split("/").dropLast(1).last().toInt()
+                val pokemonDetail = pokeAPI.fetchPokemonDetail(pokeid)
+                val pokemonSpecies= pokeAPI.fetchPokemonSpecies(pokeid)
+                Log.d("PokemonRepository", "Fetched details for Pokémon ID: $pokeid - ${pokemonDetail.name}")
+                val flavorTextEntries= pokemonSpecies.flavorTextEntries.filter {
+                    it.language.name== "en" && (it.version.name== "sword" || it.version.name== "shield")
+                }
+                val descriptionSword= flavorTextEntries.find {it.version.name=="sword"}?.flavorText
+                val descriptionShield= flavorTextEntries.find {it.version.name=="shield"}?.flavorText
+                Log.d("PokemonRepository", "Sword: $descriptionSword")
+                Log.d("PokemonRepository", "Shield: $descriptionShield")
                 Pokemon(
                     pokeid = pokemonDetail.id,
-                    name = pokemonDetail.name,
+                    name = pokemonDetail.name.capitalizeFirst(),
                     image = pokemonDetail.sprites.frontDefault,
-                    typing = pokemonDetail.types.map { it.type.name }
+                    typing = pokemonDetail.types.map { "["+it.type.name.capitalizeFirst()+"]" },
+                    descriptionSword = descriptionSword,
+                    descriptionShield = descriptionShield
                 )
             }
 
