@@ -1,5 +1,7 @@
 package com.example.as_tec_moveis.data
 
+import java.io.Serializable
+
 data class Pokemon(
     val pokeid: Int,
     val name: String,
@@ -7,4 +9,4 @@ data class Pokemon(
     val typing: List<String>,
     val descriptionSword: String?,
     val descriptionShield: String?
-)
+): Serializable

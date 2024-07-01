@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <variable
+        name="pkmn"
+        type="com.example.as_tec_moveis.data.Pokemon" />
+</data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_dark_background">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bar"
+            android:elevation="4dp"
+            app:titleTextColor="?attr/colorOnTertiary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <ImageView
+            android:id="@+id/imgPokemon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="150sp"
+            android:minWidth="150sp"
+            android:layout_marginTop="20sp"
+            android:layout_marginStart="20sp"
+            android:src="@drawable/ic_launcher_background"
+            android:background="#a1ddf0"
+            loadImage="@{pkmn.image}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            />
+
+        <TextView
+            android:id="@+id/tvPokeID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/bar"
+            android:textSize="30sp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgPokemon"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            tools:text="@{`#`+String.valueOf(pkmn.pokeid)}"
+            />
+
+        <TextView
+            android:id="@+id/tvPokeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imgPokemon"
+            app:layout_constraintTop_toBottomOf="@id/tvPokeID"
+            tools:text="@{pkmn.name}"
+            />
+
+        <TextView
+            android:id="@+id/tvPokeTyping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toEndOf="@id/imgPokemon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPokeName"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:pokemonTypes="@{pkmn.typing}"
+            />
+
+        <TextView
+            android:id="@+id/verSword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            app:layout_constraintTop_toBottomOf="@id/imgPokemon"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:textAlignment="textStart"
+            android:textColor="#4bc1db"
+            android:textSize="30sp"
+            android:text="Sword:"
+            />
+        <TextView
+            android:id="@+id/tvPokeDescSw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#4bc1db"
+            android:textSize="20sp"
+            app:layout_constraintWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/verSword"
+            tools:text="@{pkmn.descriptionSword}"
+            />
+
+        <TextView
+            android:id="@+id/verShield"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            app:layout_constraintTop_toBottomOf="@id/tvPokeDescSw"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="20dp"
+            android:textAlignment="textStart"
+            android:textColor="#d1455c"
+            android:textSize="30sp"
+            android:text="Shield:"
+            />
+        <TextView
+            android:id="@+id/tvPokeDescSh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#d1455c"
+            android:textSize="20sp"
+            app:layout_constraintWidth="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/verShield"
+            tools:text="@{pkmn.descriptionShield}"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

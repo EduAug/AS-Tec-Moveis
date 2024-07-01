@@ -7,7 +7,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.as_tec_moveis.data.Pokemon
 import com.example.as_tec_moveis.databinding.PokeItemBinding
 
-class PokemonAdapter: RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
+class PokemonAdapter(
+    private val goToDetail: (pokemon: Pokemon) -> Unit
+): RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
     private lateinit var context: Context
     private lateinit var binding: PokeItemBinding
     private var listPokemon: List<Pokemon> = emptyList()
@@ -33,6 +35,10 @@ class PokemonAdapter: RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
     inner class ViewHolder(private val bindingHolder: PokeItemBinding) : RecyclerView.ViewHolder(bindingHolder.root) {
         fun bind(pokemon: Pokemon) {
             bindingHolder.chara = pokemon
+
+            bindingHolder.root.setOnClickListener {
+                goToDetail(pokemon)
+            }
         }
     }
 }

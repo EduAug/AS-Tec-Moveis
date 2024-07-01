@@ -45,6 +45,8 @@ android {
 dependencies {
 
     implementation("com.google.dagger:hilt-android:2.50")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
     kapt("com.google.dagger:hilt-android-compiler:2.50")
 
     //Retrofit

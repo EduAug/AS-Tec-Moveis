@@ -17,14 +17,14 @@ class PokeRepository @Inject constructor(
                 val pokeid = pokemonResult.url.split("/").dropLast(1).last().toInt()
                 val pokemonDetail = pokeAPI.fetchPokemonDetail(pokeid)
                 val pokemonSpecies= pokeAPI.fetchPokemonSpecies(pokeid)
-                Log.d("PokemonRepository", "Fetched details for Pokémon ID: $pokeid - ${pokemonDetail.name}")
+//                Log.d("PokemonRepository", "Fetched details for Pokémon ID: $pokeid - ${pokemonDetail.name}")
                 val flavorTextEntries= pokemonSpecies.flavorTextEntries.filter {
                     it.language.name== "en" && (it.version.name== "sword" || it.version.name== "shield")
                 }
                 val descriptionSword= flavorTextEntries.find {it.version.name=="sword"}?.flavorText
                 val descriptionShield= flavorTextEntries.find {it.version.name=="shield"}?.flavorText
-                Log.d("PokemonRepository", "Sword: $descriptionSword")
-                Log.d("PokemonRepository", "Shield: $descriptionShield")
+//                Log.d("PokemonRepository", "Sword: $descriptionSword")
+//                Log.d("PokemonRepository", "Shield: $descriptionShield")
                 Pokemon(
                     pokeid = pokemonDetail.id,
                     name = pokemonDetail.name.capitalizeFirst(),
@@ -35,7 +35,7 @@ class PokeRepository @Inject constructor(
                 )
             }
 
-            Log.d("PokemonRepository", "Fetched ${pokemonList.size} Pokémon")
+//            Log.d("PokemonRepository", "Fetched ${pokemonList.size} Pokémon")
             Results.Success(pokemonList)
         }catch (e: Exception){
             Log.e("PokemonRepository", "Error fetching in repository", e)
